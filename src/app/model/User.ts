@@ -1,3 +1,5 @@
+import { UserActivity } from "./UserActivity";
+
 export interface User {
   id: number;
   username: string;
@@ -9,5 +11,6 @@ export interface User {
   bio: string;
   birthday: string;
   picturePath: string;
+  userActivity: UserActivity;
   _links: { self: { href: {} }, user: { href: {} }, reviews: { href: {} } };
 }
