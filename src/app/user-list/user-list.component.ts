@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/model/user';
+import { User } from 'src/app/model/User';
+import { UserActivity } from 'src/app/model/UserActivity'
 import { UserService } from 'src/app/service/user-service.service';
 
 @Component({
@@ -12,7 +14,13 @@ export class UserListComponent implements OnInit {
 
   users: User[] = [];
   links = {};
-  constructor(private userService: UserService) {
+  public readonly UserActivity = UserActivity;
+
+  searchForm = this.formBuilder.group({
+    username: ''
+  })
+
+  constructor(private userService: UserService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -21,5 +29,14 @@ export class UserListComponent implements OnInit {
       this.links = data._links;
     });
   }
+
+  searchByUsername() {
+    const prefix = this.searchForm.value.username;
+    this.userService.usersByUsername$(prefix).subscribe(data => {
+      this.users = data._embedded.users;
+      this.links = data._links;
+    });
+  }
+
 }
 
