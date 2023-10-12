@@ -1,37 +1,61 @@
-<table class="table mb-0 bg-white">
-  <thead class="bg-light">
-    <tr>
-      <th>Username</th>
-      <th>About</th>
-      <th>Status</th>
-      <th>Reviews</th>
-      <th>Thropies</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users; let i = index">
-      <td>
-        <div class="d-inline-flex align-items-center">
-          <img src="https://mdbootstrap.com/img/new/avatars/{{i+1}}.jpg" alt="" style="width: 90px; height: 90px"
-            class="rounded-circle" />
-          <div class="ms-3">
-            <p class="fw-bold mb-1">{{user.username}}</p>
-          </div>
+<div class="card mb-0 bg-light">
+  <nav class="navbar navbar-light bg-light">
+    <form [formGroup]="searchForm" (ngSubmit)="searchByUsername()">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">@</span>
         </div>
-      </td>
-      <td>
-        <p class="fw-normal mb-1">{{user.bio}}</p>
-      </td>
-      <td>
-        <span class="badge bg-success rounded-pill d-inline-flex">Active</span>
-      </td>
-      <td>Senior</td>
-      <td>
-        <button type="button" class="btn btn-link btn-sm btn-rounded" routerLink="users/{{user.id}}">
-          View Profile
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+          aria-describedby="basic-addon1" formControlName="username">
+      </div>
+    </form>
+  </nav>
+  <table datatable class="table mb-0">
+    <thead class="bg-light">
+      <tr>
+        <th>Username</th>
+        <th>About</th>
+        <th>Status</th>
+        <th>Reviews</th>
+        <th>Thropies</th>
+        <th>Profile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>
+          <div class="d-inline-flex align-items-center">
+            <img src="https://mdbootstrap.com/img/new/avatars/{{i+1}}.jpg" alt="" style="width: 90px; height: 90px"
+              class="rounded-circle" />
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{user.username}}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p class="fw-normal mb-1">{{user.bio}}</p>
+        </td>
+        <td [ngSwitch]="user.userActivity">
+          <span *ngSwitchCase="UserActivity.LOW" class="badge bg-secondary rounded-pill d-inline-flex">Low</span>
+          <span *ngSwitchCase="UserActivity.ACTIVE" class="badge bg-succes rounded-pill d-inline-flex">Active</span>
+          <span *ngSwitchCase="UserActivity.VERY_ACTIVE" class="badge bg-danger rounded-pill d-inline-flex">Very
+            Active</span>
+        <td>
+          <button type="button" class="btn btn-link btn-sm btn-rounded" routerLink="users/{{user.id}}/reviews">
+            Reviews
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-link btn-sm btn-rounded" routerLink="users/{{user.id}}/trophies">
+            Trophies
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-link btn-sm btn-rounded" routerLink="users/{{user.id}}">
+            View Profile
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
