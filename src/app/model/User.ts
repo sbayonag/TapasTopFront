@@ -12,5 +12,6 @@ export interface User {
   birthday: string;
   picturePath: string;
   userActivity: UserActivity;
-  _links: { self: { href: {} }, user: { href: {} }, reviews: { href: {} } };
+  reviewCount: number
+  _links: { self: { href: string }, user: { href: string }, reviews: { href: string } };
 }
