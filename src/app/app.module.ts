@@ -10,6 +10,7 @@ import { UserService } from './service/user-service.service';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserReviewsComponent } from './user-reviews/user-reviews.component';
     HttpClientModule,
     BrowserAnimationsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

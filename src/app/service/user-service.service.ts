@@ -13,11 +13,12 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  users$ = this.http.get<any>(this.usersUrl)
+  users$ = (params?: any) => this.http.get<any>(this.usersUrl, { params })
     .pipe(
       tap(console.log));
 
-  usersByUsername$ = (prefix: string | any) => this.http.get<any>(`${this.usersUrl}${this.userSearchByUsernameUrl}${prefix}`)
-    .pipe(
-      tap(console.log));
+  usersByUsername$ = (prefix: string, params?: any) =>
+    this.http.get<any>(`${this.usersUrl}${this.userSearchByUsernameUrl}${prefix}`, params)
+      .pipe(
+        tap(console.log));
 }
