@@ -11,13 +11,15 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserReviewsComponent } from './user-reviews/user-reviews.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UserTrophiesComponent } from './user-trophies/user-trophies.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     UserProfileComponent,
-    UserReviewsComponent
+    UserReviewsComponent,
+    UserTrophiesComponent
   ],
   imports: [
     BrowserModule,
