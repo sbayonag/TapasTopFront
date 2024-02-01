@@ -7,7 +7,7 @@ export interface User {
   name: string;
   lastname: string;
   password: string;
-  createdAt: string;
+  createdAt: Date;
   bio: string;
   birthday: string;
   picturePath: string;

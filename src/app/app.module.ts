@@ -7,11 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserService } from './service/user-service.service';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { UserReviewsComponent } from './user-reviews/user-reviews.component';
+import { UserListComponent } from './component/user-list/user-list.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { UserReviewsComponent } from './component/user-reviews/user-reviews.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { UserTrophiesComponent } from './user-trophies/user-trophies.component';
+import { UserTrophiesComponent } from './component/user-trophies/user-trophies.component';
+import { DishListComponent } from './component/dish-list/dish-list.component';
+import { ReviewListComponent } from './component/review-list/review-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { UserTrophiesComponent } from './user-trophies/user-trophies.component';
     UserListComponent,
     UserProfileComponent,
     UserReviewsComponent,
-    UserTrophiesComponent
+    UserTrophiesComponent,
+    DishListComponent,
+    ReviewListComponent
   ],
   imports: [
     BrowserModule,

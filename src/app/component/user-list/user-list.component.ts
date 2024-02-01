@@ -4,7 +4,7 @@ import { Params } from '@angular/router';
 import { User } from 'src/app/model/User';
 import { UserActivity } from 'src/app/model/UserActivity';
 import { UserService } from 'src/app/service/user-service.service';
-import { Page, UserRepositoryLinks } from './UtilInterfaces';
+import { Page, RepositoryLinks } from '../../model/Utils';
 
 @Component({
   selector: 'app-user-list',
@@ -15,7 +15,7 @@ import { Page, UserRepositoryLinks } from './UtilInterfaces';
 export class UserListComponent implements OnInit {
 
   users!: User[];
-  links!: UserRepositoryLinks;
+  links!: RepositoryLinks;
   page!: Page;
   public readonly UserActivity = UserActivity;
 

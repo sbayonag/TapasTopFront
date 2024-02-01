@@ -1,4 +1,4 @@
-export interface UserRepositoryLinks {
+export interface RepositoryLinks {
   prev: { href: string } | undefined,
   first: { href: string } | undefined,
   self: { href: string },

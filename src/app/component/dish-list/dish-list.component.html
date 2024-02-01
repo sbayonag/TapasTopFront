@@ -1,0 +1,86 @@
+<div class="container bg-light">
+
+    <nav class="navbar navbar-light">
+        <form [formGroup]="searchForm" (ngSubmit)="searchByName()">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Name" aria-label="Name"
+                    aria-describedby="basic-addon1" formControlName="name">
+            </div>
+        </form>
+    </nav>
+
+    <table class="table mb-1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>About</th>
+                <th>Reviews</th>
+                <th>Thropies</th>
+            </tr>
+        </thead>
+        <ng-container *ngIf="dishes else loading">
+            <tbody>
+                <tr *ngFor="let dish of dishes | paginate : {
+            itemsPerPage: page.size,
+            currentPage: page.number + 1,
+            totalItems: page.totalElements
+          }; let i = index">
+                    <td>
+                        <div class="d-flex align-items-center py-md-4">
+                            <img src="https://mdbootstrap.com/img/new/avatars/{{page.size * (page.number) + i + 1}}.jpg"
+                                alt="" style="width: 90px; height: 90px" class="rounded-circle" />
+                            <!-- <div class="ms-3">
+                                <p class="fw-bold mb-1 text-center" [ngSwitch]="dish.userActivity">{{dish.username}}
+                                    <span *ngSwitchCase="UserActivity.INACTIVE"
+                                        class="badge bg-secondary rounded-pill">Inactive</span>
+                                    <span *ngSwitchCase="UserActivity.ACTIVE"
+                                        class="badge bg-succes rounded-pill">Active</span>
+                                    <span *ngSwitchCase="UserActivity.VERY_ACTIVE"
+                                        class="badge bg-danger rounded-pill">Very
+                                        Active</span>
+                                </p>
+                            </div> -->
+                        </div>
+                    </td>
+                    <td>
+                        <p class="fw-normal mb-1">{{dish.description}}</p>
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-center pt-md-1 pe-md-3">
+                            <a [routerLink]="[dish.id, 'reviews']"
+                                class="position-relative pt-md-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-primary">{{dish.reviewCount}}
+                                </span>
+                                Reviews
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-center pt-md-1 pe-md-3">
+                            <a [routerLink]="[dish.id, 'trophies']"
+                                class="position-relative pt-md-2 link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-primary">{{dish.reviewCount}}
+                                </span>
+                                Trophies
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </ng-container>
+    </table>
+    <nav aria-label="Page navigation">
+        <pagination-controls class="pagination justify-content-center" previousLabel="Prev" nextLabel="Next"
+            [responsive]="true" (pageChange)="handlePageChange($event)">
+        </pagination-controls>
+    </nav>
+</div>
+
+<ng-template #loading>
+    <div>Loading...</div>
+</ng-template>

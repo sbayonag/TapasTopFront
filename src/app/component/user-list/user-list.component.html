@@ -1,4 +1,4 @@
-<div class="card mb-0 bg-light">
+<div class="container bg-light">
   <nav class="navbar navbar-light bg-light">
     <form [formGroup]="searchForm" (ngSubmit)="searchByUsername()">
       <div class="input-group">
@@ -10,7 +10,7 @@
       </div>
     </form>
   </nav>
-  <table class="table mb-0">
+  <table class="table">
     <thead class="bg-light">
       <tr>
         <th>Username</th>
@@ -29,8 +29,8 @@
         }; let i = index">
           <td>
             <div class="d-flex align-items-center py-md-4">
-              <img src="https://mdbootstrap.com/img/new/avatars/{{i+1}}.jpg" alt="" style="width: 90px; height: 90px"
-                class="rounded-circle" />
+              <img src="https://mdbootstrap.com/img/new/avatars/{{page.size * (page.number) + i + 1}}.jpg" alt=""
+                style="width: 90px; height: 90px" class="rounded-circle" />
               <div class="ms-3">
                 <p class="fw-bold mb-1 text-center" [ngSwitch]="user.userActivity">{{user.username}}
                   <span *ngSwitchCase="UserActivity.INACTIVE" class="badge bg-secondary rounded-pill">Inactive</span>
